@@ -33,15 +33,15 @@ for item in lobbying.keys():
 
 
 #this writes to a json file:
-#with open("lobbying.json", "w") as writeJSON:
-#	json.dump(lobbying, writeJSON)
+with open("lobbying.json", "w") as writeJSON:
+	json.dump(lobbying, writeJSON)
 
 #this writes to a csv file:
-os.chdir("/Users/jessicahyde/Documents/python/practice/")
+#os.chdir("/Users/jessicahyde/Documents/python/practice/")
 
-with open("lobbying.tsv", "w") as toWrite:
-    writer = csv.writer(toWrite, delimiter="\t")
-    writer.writerow(["name", "link", "date"])
-    for a in lobbying.keys():
-        writer.writerow([a.encode("utf-8"), lobbying[a]["link"], lobbying[a]["date"]])
+#with open("lobbying.tsv", "w") as toWrite:
+#    writer = csv.writer(toWrite, delimiter="\t")
+#    writer.writerow(["name", "link", "date"])
+#    for a in lobbying.keys():
+#        writer.writerow([a.encode("utf-8"), lobbying[a]["link"], lobbying[a]["date"]])
 
