@@ -33,10 +33,14 @@ def add_page_to_index(index,url,content):
 	for word in words:
 		add_to_index(index,word,url)
 	
+def lookup(index,keyword):
+   for entry in index:
+      if entry[0] == keyword:
+         return entry[1]
+   return []
 
 
-
-add_page_to_index(index,'fake.text',"This is not, (a) test")
+add_page_to_index(index,'fake.text',"This is is not, (a) test")
 add_page_to_index(index,'real.text', 'This is not a test')
 print index
 #>>> [['This', ['fake.text']], ['is', ['fake.text']], ['a', ['fake.text']],
