@@ -1,4 +1,2 @@
 # blue
-new repository
-
-a darker shade of blue
+Repository for school projects
