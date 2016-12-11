@@ -5,8 +5,6 @@
 # on each of the pages.
 
 import urllib2
-import re
-
 
 def get_page(url):
     #urllib2.urlopen(url).read()    
@@ -18,12 +16,10 @@ def get_page(url):
     return ""    
     
 def add_to_index(index,keyword,url):
-    for entry in index:
-        if entry[0] == keyword:
-            entry[1].append(url)
-            return
-    index.append([keyword,[url]])
-
+        if keyword in index:
+            index[keyword].append(url) #adds to list of urls 
+        else:
+            index[keyword]=[url] #or add keyword and url
 
 def add_page_to_index(index,url,content):
     keyword=content.split()
@@ -74,15 +70,13 @@ def crawl_web(seed):
     return crawled
     
 def lookup(index,keyword):
-   for entry in index:
-      if entry[0] == keyword:
-         return entry[1]
-   return []
+    if keyword in index:
+        return index[keyword]
+    else:
+       return None
 
 
-
-print lookup(index,'udacity')
-
+    print lookup(index,'udacity')
 
 
 print crawl_web("http://www.udacity.com/cs101x/index.html")
