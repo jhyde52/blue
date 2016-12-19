@@ -1,3 +1,8 @@
+Ideas:
+Could start with a personality quiz to determine the country
+Rank the answers in order from highest to lowest
+Return the first
+Print a description of your country
 
 '''
 Steps:
