@@ -1,0 +1,89 @@
+
+'''
+Steps:
+0. a. Store penalties
+0. b. Store list of characters, default toys, etc all countries
+1. Random assignment of 5 characters (for solo play, let them choose)
+2. Ask for input of 2 toys, 2 gift wishes, 2 worst fears from player
+3. Store inputs in variables to start (0 friends)
+4. Each character has a dash of sorts at all times-dictionary
+
+5. 0. Scenario intro if one.	
+5. a. Chapter intro posted with possible status updates and mc questions (file? list?)
+5. b. If updates, save in variables, print your variable increased/decreased
+b. c. If questions, take in answers (none in round one)
+5. d. Error handling if message is not legit
+5. e. Lookup consequences of each answer [you chose b, you get/lose x <]
+5. f. Gifts and fears exchanged-variables updated and printed
+5. g. Update scenario
+
+6. Repeat 6 times unless all countries reach max or min stats first
+
+7/15. At end state, (stats done or rounds done), print final description of all stats
+
+
+
+Country Status Variables: 
+Food, houses and safety of people (fears), range(-12,12)
+Wealth (toys, gifts recieved), range(-24, 24)
+Kindness (gifts given), range(-12,12)
+Happiness of people (penalties), range(0-4) 
+Popularity (Friends), range (0-6)
+
+Characters: FR, GB, US, IT, Germany, Japan
+2 fav toys
+2 Christmas gift
+2 worst fear
+4 overall or friend penalties
+
+Intro:
+Japan and Germany are friends from WW1 and they are enemies with USA and
+Fr and GB. Exchange gifts with friends. Japan thinks it is descended
+from God and is the best race is the world. Germany thinks blond and 
+blue eyed people are better than other races but think Japan is okayish. 
+IT decide to be friends with Germany, exchange gifts. All three want more 
+land for their people!!!!
+1937 Japan attack China (get gift)
+1939 Germany attack Poland. FR and GB declare war on Germany!
+1939 GB blocks exports on Italy's train tracks. GB take IT xmas gift from 
+Mussolini
+
+Two:
+The Battle of France
+25 June 1940
+Germany and Italy defeat France
+Germany take 1 fav toy
+Italy take 1 fav toy and Christmas present from France
+Germany if you attack you get a penalty.
+
+Three:
+The Blitz begins
+Sept 1940
+Germany take 1 fav toy from GB
+
+Four:
+Battle of Taranto
+11 Nov 1940
+GB if you attack this second time you get a penalty. 
+GB planes torpedo Italian battleships: GB take 1 fav toy from Italy. Emperor 
+Hirohito of Japan take notes.
+
+Five:
+The Blitz continues
+May 1941
+Germany take 2nd fav toy from GB
+
+Six:
+Hirohito - Japan
+You really want the USA and GB's Christmas presents
+Use your notes from battle of Taranto to plan a sneak attack on the USA. 
+If you attack you get a penalty.
+USA-president Franklin Roosevelt set up defenses
+Japan surprise attack at Pearl Harbor
+Japan take 1 fav toy from USA
+
+Seven:
+USA declare war? You are very strong. You have nuclear bombs that can destroy 
+Japan and stop the war or you can try to fix all the arguments. If you declare 
+war everyone's worst nightmare including yours will come true and no one gets 
+their fav toys. Nuclear War.
