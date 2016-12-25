@@ -1,33 +1,20 @@
-HEADER = '\033[95m'
-OKBLUE = '\033[94m'
-OKGREEN = '\033[92m'
-WARNING = '\033[93m'
-FAIL = '\033[91m'
-ENDC = '\033[0m'
-BOLD = "\033[1m"
-
-def disable():
-    HEADER = ''
-    OKBLUE = ''
-    OKGREEN = ''
-    WARNING = ''
-    FAIL = ''
-    ENDC = ''
-
-def green( msg):
-    print OKGREEN + msg + ENDC
-
-def yellow( msg):
-    print WARNING + msg + ENDC
-
-def red( msg):
-    print FAIL + msg + ENDC
-
-def blue( msg):
-    print OKBLUE + msg + ENDC
+# custom colors!
 
 
-def banner(msg, ch='=', length=78):
+colors = {'RED' : '\033[31m','ORANGE' : '\033[91m','MUSTARD' : '\033[33m','YELLOW' : '\033[93m','GREEN' : '\033[92m','GREEN2' : '\033[32m','TURQUOISE' : '\033[36m','BLUE' : '\033[94m','BLUE2' : '\033[34m','MAGENTA' : '\033[35m','PINK' : '\033[95m','WHITE' :'\033[37m', 'ENDC':'\033[0m', 'BOLD': '\033[1m'}
+
+
+
+def custom(color, msg):
+    print colors[color] + str(msg) + colors['ENDC'] 
+
+def banner(color, ch, msg, length=88):
     spaced_text = ' %s ' % msg
     banner = spaced_text.center(length, ch)
-    print OKGREEN + banner + ENDC
+    print colors[color] + banner + colors['ENDC']
+
+
+# print banner("hi", 'GREEN')
+# print custom('RED','hi')
+# print custom('ORANGE','hi orange')
+
