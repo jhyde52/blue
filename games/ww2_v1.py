@@ -5,15 +5,15 @@ import json
 reaction_pos = ['Awesome!', 'Nice!', 'Cool!', 'Sweet!', 'Great!', 'Rad!', ':)'] # localize later
 reaction_neg = ['Bummer!', 'Shoot!', 'Oh no!', 'This is terrible!', 'Lame.', ':('] # localize later
 
-printColor.banner("WW2")
+printColor.banner("WW2","MAGENTA", "+")
 print("It is June 1, 1937. The beautiful Golden Gate Bridge just opened and Amelia Earhart has just taken off to fly around the world! Which country do you want to be?")
 
-printColor.red("France")
-printColor.green ("Italy")
-printColor.blue("USA")
-printColor.red("Japan")
-printColor.green("Germany")
-printColor.blue("Great Britain")
+printColor.custom("RED","France")
+printColor.custom("GREEN","Italy")
+printColor.custom("YELLOW","USA")
+printColor.custom("ORANGE","Japan")
+printColor.custom("BLUE","Germany")
+printColor.custom("MAGENTA","Great Britain")
 
 with open('countries_data.json', 'r') as jf:
     countries = json.load(jf)
@@ -39,7 +39,8 @@ def get_inputs():
 	countries[user_country]['toys'][1] = user_toy1
 	countries[user_country]['fears'][1] = user_fear1
 	countries[user_country]['wishes'][1] = user_wish1
-	print countries[user_country]
+	print random.choice(reaction_pos)
+	#print countries[user_country]
 
 get_inputs()
 

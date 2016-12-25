@@ -4,6 +4,8 @@ Rank the answers in order from highest to lowest
 Return the first
 Print a description of your country
 
+https://pypi.python.org/pypi/colorama !!!!!
+
 '''
 Steps:
 0. a. Store penalties
