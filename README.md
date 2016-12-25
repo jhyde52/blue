@@ -1,2 +1,2 @@
 # blue
-Repository for school projects
+Repository for projects
