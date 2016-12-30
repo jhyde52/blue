@@ -5,9 +5,9 @@
 
 from nltk.corpus import wordnet as wn
 # Commands to see hypernyms of 'panda'
-# panda = wn.synset('panda.n.01')
-# hyper = lambda s: s.hypernyms()
-# list(panda.closure(hyper))
+panda = wn.synset('panda.n.01')
+hyper = lambda s: s.hypernyms()
+list(panda.closure(hyper))
 
 
 # lemma = lower case ASCII text of word or collocation. Collocations are formed by joining individual words with an underscore (_ ) character.
