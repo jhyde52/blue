@@ -1,0 +1,132 @@
+
+<head>
+    <meta charset="utf-8">
+    <title>Movies Some Movies I Want To See</title>
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        .movie-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Some Movies I Want To See</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="4dd8rX5Dy_Q" data-toggle="modal" data-target="#trailer">
+    <img src="http://ecx.images-amazon.com/images/I/51Li0IdYVaL._SX940_.jpg" width="220" height="342">
+    <h2>Hotel Rwanda</h2>
+    <p>The true story of one man and his courage in the midst of genocide.</p>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="Y2OLRrocn3s" data-toggle="modal" data-target="#trailer">
+    <img src="http://images-cdn.moviepilot.com/image/upload/c_fill,h_1231,w_1000/t_mp_quality/uploads_4e425ed3-6514-413d-a3e2-ad5914189094-blue-is-the-warmest-color-poster-hd-wallpaper-jpg-21415.jpg" width="220" height="342">
+    <h2>Blue is the Warmest Color</h2>
+    <p>A French teen forms a deep emotional and sexual connection with an older art student she met in a lesbian bar.</p>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="DmTnWUeowPc" data-toggle="modal" data-target="#trailer">
+    <img src="http://pics.filmaffinity.com/For_Those_Who_Can_Tell_No_Tales-489411730-large.jpg" width="220" height="342">
+    <h2>For Those Who Can Tell No Tales</h2>
+    <p>An Australian tourist discovers the silent legacy of wartime atrocities when she arrives in a seemingly idyllic little town on the border of Bosnia and Serbia.</p>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="FyBGkojSUvE" data-toggle="modal" data-target="#trailer">
+    <img src="http://ia.media-imdb.com/images/M/MV5BNTMyNTY1NTQ2OF5BMl5BanBnXkFtZTcwOTU3ODQxOQ@@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="342">
+    <h2>Gimme The Loot</h2>
+    <p>When their latest work is buffed by a rival crew, two determined graffiti writers embark on an elaborate plan to bomb the ultimate location: the New York Mets' Home Run Apple.</p>
+</div>
+
+    </div>
+  </body>
+</html>

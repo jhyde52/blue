@@ -35,3 +35,8 @@ GaussianNB(priors=None) # Prior probabilities of the classes/classification if a
 GaussianNB(priors=None)
 >>> print(clf_pf.predict([[-0.8, -1]])) # another good prediction!
 
+
+
+
+
+
