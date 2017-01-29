@@ -55,10 +55,6 @@ print result
 
 
 
-# easy to understand graphically
-# prone to overfitting esp with many features
-# be careful with parameters
-# can build huge classifiers with them using ensemble methods
 
 
 

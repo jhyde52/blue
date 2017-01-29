@@ -1,9 +1,9 @@
 #!/usr/bin/python
+
 import matplotlib.pyplot as plt
 from prep_terrain_data import makeTerrainData
 from class_vis import prettyPicture
-# from sklearn.neighbors.nearest_centroid import NearestCentroid
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import AdaBoostClassifier
 from time import time
 from sklearn.metrics import accuracy_score
 
@@ -30,23 +30,28 @@ plt.ylabel("grade")
 
 ################################################################################
 
-n_neighbors = 2
+
 ### name your classifier object clf if you want the 
 ### visualization code (prettyPicture) to show you the decision boundary
-def knn_author_id():
+
+
+def ab_author_id():
 	t0 = time()
-	# clf = NearestCentroid(metric='euclidean', shrink_threshold=None)
-	clf = KNeighborsClassifier(n_neighbors=22)
+	clf = AdaBoostClassifier(n_estimators = 22)
 	clf.fit(features_train, labels_train)
 	pred = clf.predict(features_test)
 	print "training time:", round(time()-t0, 3), "s"
-	
+	# show how many features are in the data
+	# this is the number of columns in the training data
+	# which is in a numpy array
+	print len(features_train[0])
+
 	t0 = time()
 	accuracy = accuracy_score(labels_test, pred)
 	print "prediction time:", round(time()-t0, 3), "s"    
 	return accuracy
 
-result = knn_author_id()
+result = ab_author_id()
 print result
 
 
@@ -58,6 +63,8 @@ except NameError:
     pass
 
 
-# got .908 with centroid
-# got .944 with regular knn and n_neighbors=22 (more of less was worse)
+
+# with n_estimators=75 or 55 or 25, accuracy is .924
+
+
 

@@ -73,31 +73,6 @@ with rbf, C's best value for accuracy (with partial training set)
 
 for full training set, .9908
 for full training set and C=100,000 I got .9943 and faster
-
-
-
-
-SVM is just an algorithm, not a machine which draws a line/hyperplane
-between data of two classes (can be nonlinear)
-Maximizes the distance to the nearest point (the margin)-robustness
-Correct classification is most important, then margin
-It ignores outliers though (it is "robust to outliers")
-
-The advantages of support vector machines are:
-Effective in high dimensional spaces.
-Still effective in cases where number of dimensions is greater than the number of samples.
-Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient.
-Versatile: different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also possible to specify custom kernels.
-The disadvantages of support vector machines include:
-If the number of features is much greater than the number of samples, the method is likely to give poor performances.
-SVMs do not directly provide probability estimates, these are calculated using an expensive five-fold cross-validation (see Scores and probabilities, below).
-
-C-parameter that control tradeoff between smooth decision boundary
-and classifying training points correctly
-
-SVM
-good for complicated domains with clearn separation
-hard with huge data sets and tons of features = slow
-hard with lots of noise -overfits -Naive Bayes better for that
-
 '''
+
+
