@@ -205,10 +205,39 @@ temp = pinv(a)
 temp * A % gives me the identity matrix
 
 
-
-
-
-
+--------Plotting-------
+t = [0:0.01:0.98]; % an array of numbers going from 0 to .98
+t % (to view)
+y1 = sin(2*pi*4*t)
+plot(t, y1);
+y2 = cos(2*pi*4*t);
+plot(t, y2);
+plot(t, y1);
+hold on; % causes octave to plot t1 and t2
+plot(t, y2, 'r'); % tell it to print red
+xlabel('time')
+ylabel('value')
+legend('sin', 'cos')
+title('my plot')
+cd '~/tmp'; print -dpng 'myPlot.png' % works!
+(cd first)
+close % to hide
+figure(1); plot(t, y1);
+figure(2); p;pt(t, y2);
+subplot(1,2,1); % shows plots as 1x2 grid, access 1st element
+plot(t,y1);
+subplot(1,2,2);
+plot(t,y2);
+axis([0.5 1 -1 1]) %changes values on right axis x and y
+help axis
+clf; % clears a figure
+A = magic(5)
+imagesc(A)
+imagesc(A), colorbar, colormap gray; % scale/legend and gray
+A(1,2)
+ans = 24
+imagesc(magic(15)), colorbar, colormap gray; % comma chaining of commands or of functions
+a=1, b=2, c=3
 
 
 
