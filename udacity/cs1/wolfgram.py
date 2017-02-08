@@ -9,4 +9,6 @@ def plot_cellular(string0, pattern, generations):
     for i in range(1,generations):
         print cellular_automaton(string0, pattern, i)
 
-plot_cellular('....................x....................', 126, 100)
+plot_cellular('....................x....................', 126, 100) 
+
+#
