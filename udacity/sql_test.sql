@@ -1,0 +1,1 @@
+CREATE INDEX keyword_type_scope ON search_keywords (keyword, type, objectid);
