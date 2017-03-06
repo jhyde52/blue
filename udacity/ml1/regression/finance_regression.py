@@ -65,7 +65,7 @@ for feature, target in zip(feature_train, target_train):
 plt.scatter(feature_test[0], target_test[0], color=test_color, label="test")
 plt.scatter(feature_test[0], target_test[0], color=train_color, label="train")
 
-
+a
 
 
 ### draw the regression line, once it's coded
