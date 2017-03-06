@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+import numpy as np
 
 def outlierCleaner(predictions, ages, net_worths):
     """
@@ -13,8 +13,8 @@ def outlierCleaner(predictions, ages, net_worths):
     
     cleaned_data = []
 
-    ### your code goes here
-
-    
-    return cleaned_data
+    # errors = abs(networths - predictions) 
+    cleaned_data = np.concatenate((predictions, ages, net_worths, abs(net_worths - predictions)), axis = 1)
+    cleaned_data = cleaned_data[np.argsort(cleaned_data[:,3])]
+    return cleaned_data[:int(len(cleaned_data)*.9),1:]
 
