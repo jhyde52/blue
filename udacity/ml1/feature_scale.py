@@ -15,3 +15,19 @@ def featureScaling(arr):
 data = [115, 140, 175]
 print featureScaling(data)
 
+
+
+# Rescale with sklearn - good for SVM with RBF and for KMeans
+# weights is a numpy array and needs to be float
+# type in python interpreter ctrl D to esc
+import numpy
+from sklearn.preprocessing import MinMaxScaler
+weights = ([[115.], [140.], [175.]])
+scaler = MinMaxScaler()
+rescaled_weight = scaler.fit_transform(weights)
+rescaled_weight
+
+# output:
+array([[ 0.        ],
+       [ 0.41666667],
+       [ 1.        ]])
