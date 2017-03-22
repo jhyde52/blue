@@ -19,3 +19,28 @@ print bag_of_words
 print vectorizer.vocabulary_.get("great")
 
 
+
+# to get rid of stop words
+# import a list of stopwords
+from nltk.corpus import stopwords
+sw = stopwords.words("english")
+
+# find the most common stopwords
+sw[0]
+# "I"
+
+sw[1]
+# "me"
+
+print len(sw)
+# 153 or 127
+
+
+from nltk.stem.snowball import SnowballStemmer
+stemmer = SnowballStemmer("english")
+stemmer.stem("responsiveness")
+
+# u'respons'
+
+stemmer.stem("unresponsive")
+# u'unrespons'
