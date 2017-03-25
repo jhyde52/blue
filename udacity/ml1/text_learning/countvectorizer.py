@@ -44,3 +44,13 @@ stemmer.stem("responsiveness")
 
 stemmer.stem("unresponsive")
 # u'unrespons'
+
+
+
+# Sklearn stop words list
+CountVectorizer(stop_words='english')
+
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+vectorizer = TfidfVectorizer(stop_words="english", lowercase=True)
+
