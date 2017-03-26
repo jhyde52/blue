@@ -1,0 +1,18 @@
+Data Analysis with R - 3%
+Intro to Inferential Statistics - 0%
+Intro to Programming
+Design of Computer Programs - 0%
+A/B Testing
+Linear Algebra Refresher Course
+Intro to Algorithms
+Design of Computer Programs
+Intro to Relational Databases - 5%
+Intro to Algorithms - 5%
+How to use Git and GitHub - 10%
+Intro to Hadoop and MapReduce - 31%
+Deep Learning - 34%
+Intro to Descriptive Statistics - 48%
+Intro to Machine Learning - 76%
+Linux Command Line Basics - 100%
+Programming Foundations with Python - 100%
+Intro to Computer Science - 100%
