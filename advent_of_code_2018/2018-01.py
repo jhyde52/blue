@@ -20,6 +20,34 @@ Here are other example situations:
 -1, -2, -3 results in -6
 Starting with a frequency of zero, what is the resulting frequency after all of the changes in frequency
 have been applied?
+
+Part Two:
+You notice that the device repeats the same frequency change list over and over. To calibrate the device,
+you need to find the first frequency it reaches twice.
+
+For example, using the same list of changes above, the device would loop as follows:
+
+Current frequency  0, change of +1; resulting frequency  1.
+Current frequency  1, change of -2; resulting frequency -1.
+Current frequency -1, change of +3; resulting frequency  2.
+Current frequency  2, change of +1; resulting frequency  3.
+(At this point, the device continues from the start of the list.)
+Current frequency  3, change of +1; resulting frequency  4.
+Current frequency  4, change of -2; resulting frequency  2, which has already been seen.
+In this example, the first frequency reached twice is 2. Note that your device might need to repeat its
+list of frequency changes many times before a duplicate frequency is found, and that duplicates might
+be found while in the middle of processing the list.
+
+Here are other examples:
+
++1, -1 first reaches 0 twice.
++3, +3, +4, -2, -4 first reaches 10 twice.
+-6, +3, +8, +5, -6 first reaches 5 twice.
++7, +7, -2, -7, -4 first reaches 14 twice.
+What is the first frequency your device reaches twice?
+
+
+BEGINNER VERSION:
 """
 
 
@@ -57,28 +85,31 @@ if __name__ == "__main__":
     main()
 
 
-"""Part Two:
-You notice that the device repeats the same frequency change list over and over. To calibrate the device,
-you need to find the first frequency it reaches twice.
 
-For example, using the same list of changes above, the device would loop as follows:
+""" ADVANCED VERSION
+map takes first argument as a function, second as a iterable
+https://docs.python.org/3/library/functions.html#map
 
-Current frequency  0, change of +1; resulting frequency  1.
-Current frequency  1, change of -2; resulting frequency -1.
-Current frequency -1, change of +3; resulting frequency  2.
-Current frequency  2, change of +1; resulting frequency  3.
-(At this point, the device continues from the start of the list.)
-Current frequency  3, change of +1; resulting frequency  4.
-Current frequency  4, change of -2; resulting frequency  2, which has already been seen.
-In this example, the first frequency reached twice is 2. Note that your device might need to repeat its
-list of frequency changes many times before a duplicate frequency is found, and that duplicates might
-be found while in the middle of processing the list.
+python aoc.py 1.txt
+or
+type python.py and then copy in data in cmd line
 
-Here are other examples:
+part 2
+itertools
+https://docs.python.org/2/library/itertools.html
 
-+1, -1 first reaches 0 twice.
-+3, +3, +4, -2, -4 first reaches 10 twice.
--6, +3, +8, +5, -6 first reaches 5 twice.
-+7, +7, -2, -7, -4 first reaches 14 twice.
-What is the first frequency your device reaches twice?
+set has nicer syntax and can do union or intersect
+and don't have to worry about setting to true
 """
+
+import fileinput
+print(sum(map(int,fileinput.input())))
+
+seen = () # or seen {0} to safer for corner cases
+freq = 0
+for adjust in itertools.cycle(numbers):
+    freq += numbers
+    if freq in seen:
+        print(freq)
+        break
+    seen.add(freq)
