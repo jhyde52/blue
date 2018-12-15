@@ -49,7 +49,7 @@ What is the first frequency your device reaches twice?
 
 BEGINNER VERSION:
 """
-
+# part one and two
 
 def main():
     x = []   # create empty list
@@ -103,8 +103,11 @@ and don't have to worry about setting to true
 """
 
 import fileinput
+
+# part one
 print(sum(map(int,fileinput.input())))
 
+# part two
 seen = () # or seen {0} to safer for corner cases
 freq = 0
 for adjust in itertools.cycle(numbers):
