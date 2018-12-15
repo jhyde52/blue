@@ -42,10 +42,38 @@ produces a checksum of 4 * 3 = 12.
 with open("2018-02.txt", "r") as input_file:
 input = [line.strip() for line in input_file]
 
-What is the checksum for your list of box IDs?
+Part one: What is the checksum for your list of box IDs?
 Make a dictionary and insert each letter and add a freq each time we see it in that word.
-7776"""
+7776
 
+
+--- Part Two ---
+Confident that your list of box IDs is complete, you're ready to find the boxes full of prototype fabric.
+
+The boxes will have IDs which differ by exactly one character at the same position in both strings.
+For example, given the following box IDs:
+
+abcde
+fghij
+klmno
+pqrst
+fguij
+axcye
+wvxyz
+The IDs abcde and axcye are close, but they differ by two characters (the second and fourth). However,
+the IDs fghij and fguij differ by exactly one character, the third (h and u). Those must be the
+correct boxes.
+
+What letters are common between the two correct box IDs? (In the example above, this is found by
+removing the differing character from either ID, producing fgij.)
+
+wlkigsqyfecjqqmnxaktdrhbz
+wlkiogsqyfecjqqmnxaktdrhbz
+wlkiwgsqyfecjqqmnxaktdrhbz
+
+BEGINNER VERSION
+"""
+# Part one and two
 
 def main():
 	ids = []
@@ -98,26 +126,57 @@ if __name__ == "__main__":
 
 
 
-"""--- Part Two ---
-Confident that your list of box IDs is complete, you're ready to find the boxes full of prototype fabric.
+"""
+ADVANCED VERSION
+counts = collections.defaultdict(int) is like Counter
+counts['a'] += 2
 
-The boxes will have IDs which differ by exactly one character at the same position in both strings.
-For example, given the following box IDs:
+on command line:
+python aoc_2.py input.txt
 
-abcde
-fghij
-klmno
-pqrst
-fguij
-axcye
-wvxyz
-The IDs abcde and axcye are close, but they differ by two characters (the second and fourth). However,
-the IDs fghij and fguij differ by exactly one character, the third (h and u). Those must be the
-correct boxes.
+replace for loop:
+counts.update(set(letter_counts.value()))
 
-What letters are common between the two correct box IDs? (In the example above, this is found by
-removing the differing character from either ID, producing fgij.)
+sum true and false tells you how many are true
 
-wlkigsqyfecjqqmnxaktdrhbz
-wlkiogsqyfecjqqmnxaktdrhbz
-wlkiwgsqyfecjqqmnxaktdrhbz """
+"""
+
+# Part one
+
+import collections
+import fileinput
+import itertools
+
+counts = collections.Counter() # this is a type of dictionary, when you initialize it defaults undefined values to 0--otherwise you would get error cuz default is null
+
+for line in fileinput.input:
+    line = line.strip()
+    letter_counts = collections.Counter(line)  #counts how many times each things appears
+    counts_seen = set(letter_counts.value)
+    for count in counts_seen:
+        counts[count]
+print (counts[2] * counts[3])
+
+
+
+# Part two:
+# use combinations from itertools
+# zip function 
+# https://docs.python.org/3/library/functions.html#zip
+# zips [1,2,3][2,3,4]
+# (1,2)(2,3)(3,4)
+
+counts = collections.Counter()
+serials = map(str.strip, fileinput.input())
+for serial in serials:
+    letter_counts = collections.Counter(line)
+    counts.update(set(letter_counts.value))
+
+for serial1, serial2 in itertools.combinations(serials):
+    diffs = sum(
+        c1 != c2
+        for c1, c2 in zip(serial1, serial2))  # zip
+
+if len(same_chars) == len(serial1):
+    print(same_chars)
+    break
