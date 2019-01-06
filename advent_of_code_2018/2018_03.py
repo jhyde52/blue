@@ -76,26 +76,40 @@ python 2018-03.py 2018-03.txt
 
 
 
-# part one
-
 import fileinput
 import re
 import collections
 
-
 LINE_RE = re.compile(r'#\d + @(\d+),(\d+):(\d+)x(\d+)')
 DIGIT_RE = re.compile(r'\d+')
 
-def overlap():
-    counts = collections.defaultdict(int)
-    for line in fileinput.input():
-    # print(map(int, DIGIT_RE.findall(line))[1:])
-        x_start, y_start, width, height = map(int, DIGIT_RE.findall(line))[1:]  # put into 4 variables
-        for x in range (x_start, x_start + width): # goes until you reach arg 2
-            for y in range (y_start, y_start + height):
-                counts[(x, y)] += 1 # putting in parenthesis makes it a tuple which is like a list type
-    return counts
 
+def get_rectangles():
+    # list_values=[]
+    # for line in fileinput.input():
+    #    list_values.append(map(int, DIGIT_RE.findall(line))[1:])  # put tuple in list
+    #return list_values
+    return[map(int, DIGIT_RE.findall(line))[1:] for line in fileinput.input()]  # list comprehension
+
+def get_squares(rectangle):
+    x_start, y_start, width, height = rectangle
+    squares = []
+    # range makes you a list
+    for x in range (x_start, x_start + width): # loops over each square until less than reaching arg 2 (the width)
+        for y in range (y_start, y_start + height):
+            squares.append((x,y)) # parenthesis to tell it to create a tuple of x and y and pass it in
+    return squares # a list of tuples
+
+def overlap(rectangles):
+    counts = collections.defaultdict(int)
+    for re in rectangles:
+        for sq in get_squares(re):
+            counts[sq] += 1 # already is a tuple
+            # print 'sq', sq
+            # print 'counts', counts
+    return counts # for each square, all have at least one
+
+# this just gives the name of counts for inside this function to the input you defined at bottom which can be abcde
 def two_or_more(counts):
     counter = 0
     list_values = counts.values()  #this is default to get list of values in dictionary
@@ -103,16 +117,21 @@ def two_or_more(counts):
     #     if value >= 2: # 2 or more
     #         counter +=1
     # return counter
-    # generator expression - a generator makes something you can iterate over once
-    return sum(value >=2 for value in list_values)
+    return sum(value >=2 for value in list_values) # generator expression - a generator makes something you can iterate over once
 
-def loner(counts):
-    if counts.max() == 1:
-        lone = (r['id'])
+def not_overlap(rectangles, counts):
+    for rect in rectangles:
+        squares = get_squares(rect)
+        is_no_overlap = True
+        for square in squares:
+            if counts[square] != 1:
+                is_no_overlap = False
+                break
+        if is_no_overlap: # if is_no_overlap = True
+           return rect
 
-counts = overlap() # zero argument function, need to set to variable for reuse outside function = concept called scope
+rectangles = get_rectangles()
+counts = overlap(rectangles) # zero argument function, need to set to variable for reuse outside function = concept called scope
 print two_or_more(counts) # must pass the variable again
-print loner(counts)
-
-
+print not_overlap(rectangles, counts)
 

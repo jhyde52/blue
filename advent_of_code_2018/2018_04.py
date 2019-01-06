@@ -2,15 +2,12 @@
 You've sneaked into another supply closet - this time, it's across from the prototype suit manufacturing lab.
 You need to sneak inside and fix the issues with the suit, but there's a guard stationed outside the lab,
 so this is as close as you can safely get.
-
 As you search the closet for anything that might help, you discover that you're not the first person to want
 to sneak in. Covering the walls, someone has spent an hour starting every midnight for the past few months
 secretly observing this guard post! They've been writing down the ID of the one guard on duty that night
 - the Elves seem to have decided that one guard was enough for the overnight shift - as well as when they
 fall asleep or wake up while at their post (your puzzle input).
-
 For example, consider the following records, which have already been organized into chronological order:
-
 [1518-11-01 00:00] Guard #10 begins shift
 [1518-11-01 00:05] falls asleep
 [1518-11-01 00:25] wakes up
@@ -31,9 +28,7 @@ For example, consider the following records, which have already been organized i
 Timestamps are written using year-month-day hour:minute format. The guard falling asleep or waking up is
 always the one whose shift most recently started. Because all asleep/awake times are during the
 midnight hour (00:00 - 00:59), only the minute portion (00 - 59) is relevant for those events.
-
 Visually, these records show that the guards are asleep at these times:
-
 Date   ID   Minute
             000000000011111111112222222222333333333344444444445555555555
             012345678901234567890123456789012345678901234567890123456789
@@ -46,27 +41,21 @@ The columns are Date, which shows the month-day portion of the relevant day; ID,
 duty that day; and Minute, which shows the minutes during which the guard was asleep within the midnight
 hour. (The Minute column's header shows the minute's ten's digit in the first row and the one's digit
 in the second row.) Awake is shown as ., and asleep is shown as #.
-
 Note that guards count as asleep on the minute they fall asleep, and they count as awake on the minute
 they wake up. For example, because Guard #10 wakes up at 00:25 on 1518-11-01, minute 25 is marked as awake.
-
 If you can figure out the guard most likely to be asleep at a specific time, you might be able to trick
 that guard into working tonight so you can have the best chance of sneaking in. You have two strategies
 for choosing the best guard/minute combination.
-
 Strategy 1: Find the guard that has the most minutes asleep. What minute does that guard spend asleep the most?
-
 In the example above, Guard #10 spent the most minutes asleep, a total of 50 minutes (20+25+5), while
 Guard #99 only slept for a total of 30 minutes (10+10+10). Guard #10 was asleep most during minute 24
 (on two days, whereas any other minute the guard was asleep was only seen on one day).
-
 While this example listed the entries in chronological order, your entries are in the order you found them.
 ------*You'll need to organize them before they can be analyzed.
-
 What is the ID of the guard you chose multiplied by the minute you chose? (In the above example, the
-answer would be 10 * 24 = 240.)'''
+answer would be 10 * 24 = 240.)
 
-
+[1518-10-15 23:59] Guard #1699 begins shift
 
 --- Part Two ---
 Strategy 2: Of all guards, which guard is most frequently asleep on the same minute?
@@ -74,40 +63,40 @@ Strategy 2: Of all guards, which guard is most frequently asleep on the same min
 In the example above, Guard #99 spent minute 45 asleep more than any other guard or minute - three times in total. (In all other cases, any guard spent any minute asleep at most twice.)
 
 What is the ID of the guard you chose multiplied by the minute you chose? (In the above example, the answer would be 99 * 45 = 4455.)
-
-
+'''
 
 import re
 
-with open('2018-04.txt') as f:
-	lines = f.read().splitlines()
+with open('2018_04.txt') as f:
+    lines = f.read().splitlines()
 
+# _used to make a variable named _ that we don't care about and will just throw away
+def most_sleep(guards):
+    # first sorts by sum of minutes in tuple then guard
+    _, guard_id = max((sum(minutes), guard) for (guard, minutes) in guards.items())
+    _, chosen_minute = max((m, idx) for (idx, m) in enumerate(guards[guard_id]))
+    return guard_id * chosen_minute
+
+def consistent_sleep(guards):
+    _, chosen_minute, guard_id = max((minute, idx, guard) for (guard, minutes) in guards.items() for (idx, minute) in enumerate(minutes))
+    return guard_id * chosen_minute
+
+# dict with list of values
 guards = {}
 id = 0
 falls = 0
-for line in sorted(lines):
-	if 'Guard' in line:
-		id = int(re.findall('#(\d+)', line)[0])
-		if id not in guards:
-			guards[id] = [0] * 59
-		continue
-	minute = int(re.findall(':(\d+)\]', line)[0])
-	if 'falls asleep' in line:
-		falls = minute
-	else:
-		for m in range(falls, minute):
-			guards[id][m] += 1
-
-def star1(guards):
-	_, guard_id = max((sum(minutes), guard) for (guard, minutes) in guards.items())
-	_, chosen_minute = max((m, idx) for (idx, m) in enumerate(guards[guard_id]))
-	return guard_id * chosen_minute
-
-def star2(guards):
-	_, chosen_minute, guard_id = max((minute, idx, guard) for (guard, minutes) in guards.items() for (idx, minute) in enumerate(minutes))
-	return guard_id * chosen_minute
-
-print("Part 1:", star1(guards))
-print("Part 2:", star2(guards))
+for line in sorted(lines): # sorts lexigraphically, works if same number of digits
+    minute = int(re.findall(':(\d+)\]', line)[0])
+    if 'Guard' in line:
+        id = int(re.findall('#(\d+)', line)[0]) # zero says take first element in list (which in this case has one element)
+        if id not in guards:
+            guards[id] = [0] * 60  # Make list with 60 zeroes --last element in list is indexed as n-1 or 59
+    elif 'falls asleep' in line:
+        falls = minute
+    else:
+        for m in range(falls, minute):
+            guards[id][m] += 1
 
 
+print("Part 1:", most_sleep(guards))
+print("Part 2:", consistent_sleep(guards))
