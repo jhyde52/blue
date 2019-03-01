@@ -55,17 +55,17 @@ and fully polymersing the result?
 import fileinput
 line = next(fileinput.input()).strip()
 
-def polymers(line):
+def reaction(line):
 	result = []
 	for char in line:
 		if len(result) > 0 and abs(ord(char) - ord(result[-1])) == 32:
 			result.pop()
         else:
         	result.append(char)
-	print result
+	# print result
 	return len(result)
 
-# print(polymers(line))
+# print(reaction(line))
 
 
 def polymers(input):
